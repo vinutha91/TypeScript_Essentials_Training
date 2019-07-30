@@ -1,0 +1,11 @@
+.incomplete {
+    background: #ffcfcf;
+}
+
+.complete {
+    background: #d6ffd0;
+}
+
+.active {
+    background: #cad2ff;
+}
