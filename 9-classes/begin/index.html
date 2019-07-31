@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Todo Application</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Add Todo</h2>
+                <label for="todo">Todo Description</label>
+                <input type="text" id="description" class="form-control" placeholder="Todo Description" name="todo">
+
+                <label for="date">Todo Description</label>
+                <input type="date" id="date" class="form-control" placeholder="DD/MM/YYYY" name="date">
+
+                <button class="btn btn-danger" id="todoSubmit">Add Todo</button>
+            </div>
+            <div class="col-sm-6">
+                <h2>My Todo List</h2>
+                <ul id="myTodoList" class="list-group col-sm-12"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.22/system.js"></script>
+    <script>
+        System.defaultJSExtensions = true;
+        System.import('index').then(function(module) {
+            new module.TodoApplication([{
+                id: Math.random(),
+                description: 'Pick up laundry',
+                state: 0,
+                date: new Date()
+            }]);
+        });
+    </script>
+</body>
+</html>

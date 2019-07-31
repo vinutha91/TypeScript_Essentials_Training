@@ -1,5 +1,4 @@
 // Some change
-
 var a: any = 'Ankit';
 var b: string = 'Ankit';
 

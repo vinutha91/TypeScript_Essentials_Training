@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development",
-    "compile:tsc": "tsc"
+    "compile:tsc": "tsc -w",
+    "tsc:help": "tsc --help"
   },
   "author": "",
   "license": "ISC",

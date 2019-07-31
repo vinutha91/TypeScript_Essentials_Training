@@ -1,25 +1,24 @@
 {
     "include": [
-        "./14-abstract/final/*.ts/"
+        "./9-classes/begin/index.ts"
     ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts"
     ],
     "compilerOptions": {
-    "outDir": "./14-abstract/final",
-    "noImplicitAny": true,
-    "module": "system",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "target": "es6",
-    "typeRoots": [
-    "node_modules/@types"
-    ],
-    "lib": [
-    "es2017",
-    "dom"
-    ]
+        "outDir": "./9-classes/begin",
+        "module": "system",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "target": "es6",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2017",
+            "dom"
+        ]
     }
-    }
-    
+}
