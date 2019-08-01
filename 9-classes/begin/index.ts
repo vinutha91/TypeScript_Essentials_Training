@@ -5,7 +5,7 @@ export interface Todo {
     id: number,
     description: string,
     date: Date,
-    state: number
+    state?: number
 }
 
 class abc {
