@@ -1,25 +1,33 @@
-interface Todo {
+import { TodoServices } from './myTodoServices'
+// import * as myClass from './myTodoServices';
+
+export interface Todo {
     id: number,
     description: string,
     date: Date,
     state: number
 }
 
-enum TodoStates {
+class abc {
+
+}
+
+export enum TodoStates {
     NEW,
     ACTIVE,
     COMPLETED,
     DELETED
 }
 
-interface TodoService {
+export interface TodoService {
     addTodo(): Todo,
     deleteTodo(id: number): boolean,
     completeTodo(id: number): boolean
 }
 
-export class TodoApplication implements TodoService {
-    allTodos: Todo[];
+export class TodoApplication {
+    public allTodos: Todo[];
+    public todoServices: TodoServices = new TodoServices(this);
 
     constructor(initialTodos: Todo[]) {
         let todoSubmit = document.getElementById('todoSubmit');
@@ -27,89 +35,112 @@ export class TodoApplication implements TodoService {
         document.querySelector('body').addEventListener('click', (event: any) => {
             var id: number = Number(event.target.getAttribute('data-todoId'));
             if (event.target.classList.contains('deleteButton')) {
-                this.deleteTodo(id);
+                this.todoServices.deleteTodo(id);
             } else if (event.target.classList.contains('completeButton')) {
-                this.completeTodo(id);
+                this.todoServices.completeTodo(id);
             }
         });
 
         todoSubmit.addEventListener('click', () => {
-            this.addTodo();
+            this.todoServices.addTodo();
         });
         
         this.allTodos = initialTodos;
-        this.rederTodos(this.allTodos);
-    }
-
-    addTodo(): Todo {
-        let myTodo: Todo;
-        
-        let todoDescInput:any = document.getElementById('description');
-        let todoDateInput:any = document.getElementById('date');
-        
-        myTodo = {
-            id: Math.random(),
-            state: 0,
-            description: todoDescInput.value,
-            date: new Date(todoDateInput.value)
-        }
-        
-        this.allTodos.push(myTodo);
-        
-        this.rederTodos(this.allTodos);
-        
-        return myTodo;
-    }
-
-    deleteTodo(id: number): boolean {
-        let targetTodo = this.allTodos.filter((todo) => {
-            return todo.id === id;
-        });
-
-        if (targetTodo[0].state === TodoStates.NEW) {
-            alert('A todo in New state cannot be deleted!');
-            return;
-        }
-
-        this.allTodos = this.allTodos.filter((todo) => {
-            return todo.id !== id;
-        });
-
-        this.rederTodos(this.allTodos);
-
-        return true;
-    }
-
-    completeTodo(id: number): boolean {
-        this.allTodos.forEach((todo) => {
-            if (todo.id === id) {
-                todo.state = TodoStates.COMPLETED;
-            }
-        });
-
-        this.rederTodos(this.allTodos);
-
-        return true;
-    }
-
-    rederTodos(todos: Todo[]) {
-        var myTodoList = document.getElementById('myTodoList');
-
-        myTodoList.innerHTML = '';
-        todos.forEach((todo) => {
-            let todoClass = 'incomplete';
-            if (todo.state === TodoStates.COMPLETED) {
-                todoClass = 'complete';
-            } else if (todo.state === TodoStates.ACTIVE) {
-                todoClass = 'active';
-            }
-            myTodoList.innerHTML += `
-                <li class="list-group-item ${todoClass}">
-                    ${todo.description}
-                    <button class="btn btn-danger deleteButton" data-todoId="${todo.id}">Delete</button>
-                    <button class="btn btn-success completeButton" data-todoId="${todo.id}">Complete</button>
-                </li>
-            `
-        })
+        this.todoServices.rederTodos(this.allTodos);
     }
 }
+
+
+
+// abstract class Vehicle {
+//     abstract type: string;
+//     wheels: number;
+//     constructor(wheels: number) {
+//         this.wheels = wheels;
+//     }
+
+//     abstract soundOfMyVehicle(): string;
+// }
+
+// // Cannot instantiate Abstract classes
+// // let myVehicle: Vehicle = new Vehicle('Car', 4);
+
+// class Car extends Vehicle {
+//     color: string;
+//     brand: string;
+//     type: string;
+
+//     constructor(color: string, brand: string, type: string, wheels: number) {
+//         super(wheels);
+//         this.type = type;
+
+//         this.color = color;
+//         this.brand = brand;
+//     }
+
+//     soundOfMyVehicle(): string {
+//         return 'GRGRGRGFGRGRGRGRGRGG';
+//     }
+// }
+
+
+// class Vehicle {
+//     type: string;
+//     wheels: number;
+//     constructor(wheels: number) {
+//         this.wheels = wheels;
+//     }
+
+//     soundOfMyVehicle(): string {
+//         return 'AAAAAAAAAAAAAAA';
+//     };
+// }
+
+// class Car extends Vehicle {
+//     static color: string;
+//     brand: string;
+//     type: string;
+
+//     constructor(color: string, brand: string, type: string, wheels: number) {
+//         super(wheels);
+//         this.type = type;
+
+//         this.brand = brand;
+
+//         Car.color = 'red';
+//     }
+
+//     soundOfMyVehicle(): string {
+//         return 'GRGRGRGFGRGRGRGRGRGG';
+//         Car.color = 'green';
+//     }
+// }
+
+
+
+// // function add(a: number, b: number): number
+// // function add(a: string, b: string): string
+// // function add(a: any, b: any): any
+// // {
+// //     return a+b;
+// // }
+
+// function clone<T>(a: T):T {
+//     let myObject = JSON.stringify(a)
+//     return JSON.parse(myObject);
+// }
+
+// class KeyValuePair<TKey, TValue> {
+//     key: TKey;
+//     value: TValue;
+
+//     constructor(key: TKey, value: TValue) {
+//         this.key = key;
+//         this.value = value;
+//     }
+// }
+
+// var obj1 = new KeyValuePair(1,'a');
+// var obj2 = new KeyValuePair('a','a');
+// var obj3 = new KeyValuePair('a',2);
+// var obj4 = new KeyValuePair('a',[]);
