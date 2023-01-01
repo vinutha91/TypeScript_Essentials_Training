@@ -14,10 +14,10 @@
   "dependencies": {
     "node-fetch": "^2.6.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.33.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^3.6.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^5.0.1"
   }
 }
